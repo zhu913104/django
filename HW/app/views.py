@@ -6,6 +6,7 @@ from app.models import Commodity
 from django.http import HttpResponse
 from dwebsocket import require_websocket
 from dwebsocket.decorators import accept_websocket,require_websocket
+import serial
 # Create your views here.
 
 def hello(request):
@@ -100,6 +101,7 @@ def modify_message(message):
 
 @accept_websocket
 def echo(request):
+	ser=serial.Serial("COM3",9600,timeout=100)
 	if not request.is_websocket():#判断是不是websocket连接
 		try:#如果是普通的http方法
 			message = request.GET['message']
@@ -108,6 +110,15 @@ def echo(request):
 			return render(request,'index2.html')
 	else:
 		for message in request.websocket:
-			message=str("Server return").encode()+message
-			request.websocket.send(message)#发送消息到客户端
+			try:
+				serin = message+str("\n").encode()
+				message=str("Server return: ").encode()+message
+				ser.write(serin)
+				request.websocket.send(message)#发送消息到客户端
+			except Exception as e:
+				pass
+
+	ser.close()
+
+	
 
