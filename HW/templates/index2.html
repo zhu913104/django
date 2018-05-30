@@ -30,8 +30,26 @@
                 window.s.send($('#message').val());//通过websocket发送数据
             }
         });
+        $('#howhow').click(function () {
+            var s = '{"qrcode":"howhow"}'
+            //如果未连接到websocket
+            if (!window.s) {
+                alert("websocket未连接.");
+            } else {
+                window.s.send(s);//通过websocket发送数据
+            }
+        });
         $('#csievideo').click(function () {
             var s = '{"qrcode":"csievideo"}'
+            //如果未连接到websocket
+            if (!window.s) {
+                alert("websocket未连接.");
+            } else {
+                window.s.send(s);//通过websocket发送数据
+            }
+        });
+        $('#QR').click(function () {
+            var s = 'QRCODE'
             //如果未连接到websocket
             if (!window.s) {
                 alert("websocket未连接.");
@@ -56,7 +74,10 @@
 <button type="button" id="connect_websocket">連接 websocket</button>
 <button type="button" id="send_message">發送 message</button>
 <button type="button" id="close_websocket">關閉 websocket</button>
+<button type="button" id="howhow">howhow</button>
 <button type="button" id="csievideo">csievideo</button>
+<button type="button" id="QR">開啟QRCODE掃描</button>
+
 <h1>Received Messages</h1>
 <div id="messagecontainer">
 

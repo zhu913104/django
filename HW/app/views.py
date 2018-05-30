@@ -7,7 +7,9 @@ from django.http import HttpResponse
 from dwebsocket import require_websocket
 from dwebsocket.decorators import accept_websocket,require_websocket
 import serial
-from collections import defaultdict   
+from collections import defaultdict
+from app.qrcode_decoder import * 
+  
 allconn = defaultdict(list) 
 # Create your views here.
 
@@ -116,18 +118,28 @@ def echo(request,userid):
 	else:
 		allconn[str(userid)] = request.websocket
 		for message in request.websocket:
-			try:
+                    
+                        try:
+                            if message.decode("utf-8") == 'QRCODE':
 				# serin = message+str("\n").encode()
 				# ser.write(serin)
 				# message=str("Server return: ").encode()+message
-				request.websocket.send (message)#发送消息到客户端
-				for i in allconn:  
-					if i != str(userid):  
-						allconn[i].send(message)
-			except Exception as e:
-				pass
+                                message=QRCODE().encode("utf-8")
+                                request.websocket.send (message)#发送消息到客户端
+                                for i in allconn:  
+                                        if i != str(userid):  
+                                                allconn[i].send(message)
+                                message=''
+                            else:
+                                request.websocket.send (message)#发送消息到客户端
+                                for i in allconn:  
+                                        if i != str(userid):  
+                                                allconn[i].send(message) 
+                        except Exception as e:
+                                pass
 
-	ser.close()
+
+
 
 	
 
