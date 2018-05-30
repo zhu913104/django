@@ -32,5 +32,5 @@ urlpatterns = [
     path('index2/',views.index2),
     path('index/',views.index),
     path('echo_once/',views.echo_once),
-    path('echo/',views.echo),
+    path('echo/<int:userid>',views.echo),
 ]

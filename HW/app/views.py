@@ -7,6 +7,8 @@ from django.http import HttpResponse
 from dwebsocket import require_websocket
 from dwebsocket.decorators import accept_websocket,require_websocket
 import serial
+from collections import defaultdict   
+allconn = defaultdict(list) 
 # Create your views here.
 
 def hello(request):
@@ -100,21 +102,28 @@ def modify_message(message):
 
 
 @accept_websocket
-def echo(request):
-	ser=serial.Serial("COM3",9600,timeout=100)
+def echo(request,userid):
+	# ser=serial.Serial("COM3",9600,timeout=100)
+	allresult = {} 
+	allresult['userid'] = userid
+	global allconn 
 	if not request.is_websocket():#判断是不是websocket连接
 		try:#如果是普通的http方法
 			message = request.GET['message']
 			return HttpResponse(message)
 		except:
-			return render(request,'index2.html')
+			return render(request,'index2.html',allresult)
 	else:
+		allconn[str(userid)] = request.websocket
 		for message in request.websocket:
 			try:
-				serin = message+str("\n").encode()
-				message=str("Server return: ").encode()+message
-				ser.write(serin)
-				request.websocket.send(message)#发送消息到客户端
+				# serin = message+str("\n").encode()
+				# ser.write(serin)
+				# message=str("Server return: ").encode()+message
+				request.websocket.send (message)#发送消息到客户端
+				for i in allconn:  
+					if i != str(userid):  
+						allconn[i].send(message)
 			except Exception as e:
 				pass
 
