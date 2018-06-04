@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+	<meta charset="utf-8">
+
+    <!-- Bootstrap CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static "css/tictactoe.css" %}" >
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+
+	<script src="{% static "js/tictactoe.js" %}">
+
+	</script>
+	   <script type="text/javascript">
+        $(document).ready(function(){
+            $.ajaxSetup({
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                });
+            });
+    </script>
+	</head>
+	<body>
+	 	<table>
+    <tr>
+        <td class = "cell" id = "0"></td>
+        <td class = "cell" id = "1"></td>
+        <td class = "cell" id = "2"></td>
+    </tr>
+    <tr>
+        <td class = "cell" id = "3"></td>
+        <td class = "cell" id = "4"></td>
+        <td class = "cell" id = "5"></td>
+    </tr>
+    <tr>
+        <td class = "cell" id = "6"></td>
+        <td class = "cell" id = "7"></td>
+        <td class = "cell" id = "8"></td>
+    </tr>
+</table>
+<p>choose</p>
+<br>
+<div class = "guys">
+  <div class= "dots">
+  </div> 
+  <div class= "dots2">
+  </div>
+</div>
+	</body>
+</html>

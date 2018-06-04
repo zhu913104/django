@@ -1,0 +1,83 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style type="text/css">
+        body{
+            font-family: Microsoft JhengHei;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js">
+    </script>
+    {% load static %}
+    <script src="{% static "js/delete.js" %}">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $.ajaxSetup({
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                });
+            });
+    </script>
+    <title>Hello, world!</title>
+  </head>
+  <body>
+        <div class="container" class="input-group mb-3">
+            <h1>刪除資料</h1>
+        <form >
+                <input type="hidden" id="commodity_id" name="commodity_id" value="{{delete.commodity_id}}">  
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">商品名稱</span>
+                    </div>
+                        <input type="text" class="form-control" id="commodity_name"  name="commodity_name"   aria-describedby="basic-addon1" value="{{delete.commodity_name}}" disabled="disabled">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">商品數量</span>
+                    </div>
+                        <input type="text" class="form-control" id="commodity_num" name="commodity_num"   aria-describedby="basic-addon1" value="{{delete.commodity_num}}" disabled="disabled">
+                </div>              
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">上架日期</span>
+                    </div>
+                        <input type="date" class="form-control" id="commodity_date" name="commodity_date"   aria-describedby="basic-addon1" value="{{delete.commodity_date | date:'Y-m-d'}}"  disabled="disabled">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">商品描述</span>
+                    </div>
+                        <textarea class="form-control" id="commodity_dis" name="commodity_dis" aria-label="With textarea"  disabled="disabled" >{{delete.commodity_dis}}</textarea>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">圖片連結</span>
+                    </div>
+                        <input type="text" class="form-control" id="commodity_img" name="commodity_img"   aria-describedby="basic-addon1" value="{{delete.commodity_img}}"  disabled="disabled" >
+                </div>              
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">商品價格</span>
+                    </div>
+                        <input type="text" class="form-control" id="commodity_price" name="commodity_price"   aria-describedby="basic-addon1" value="{{delete.commodity_price}}"  disabled="disabled">
+                     <div class="input-group-append">
+                        <span class="input-group-text">元</span>
+                    </div>
+                </div>
+                <button type="button" id="sub_delete" class="btn btn-primary btn-lg" >刪除</button> 
+                <a href="/commodity" class="btn btn-secondary btn-lg">返回清單</a>
+
+        </form>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  </body>
+</html>
+
+

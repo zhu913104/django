@@ -1,0 +1,88 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+    {% load static %}
+    <script scr="{% static "js/insert.js" %}"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style type="text/css">
+    	body{
+    		font-family: Microsoft JhengHei;
+    	}
+    </style>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js">
+    </script>
+    {% load static %}
+    <script src="{% static "js/insert.js" %}">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $.ajaxSetup({
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                });
+            });
+    </script>
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    	<div class="container" class="input-group mb-3">
+    		<h1>新增資料</h1>
+		<form>
+
+				<div class="input-group mb-3">
+  					<div class="input-group-prepend">
+    					<span class="input-group-text" id="basic-addon1">商品名稱</span>
+  					</div>
+  						<input type="text" class="form-control" id="commodity_name"  name="commodity_name"   aria-describedby="basic-addon1">
+				</div>
+				<div class="input-group mb-3">
+  					<div class="input-group-prepend">
+    					<span class="input-group-text" id="basic-addon1">商品數量</span>
+  					</div>
+  						<input type="text" class="form-control" id="commodity_num" name="commodity_num"   aria-describedby="basic-addon1">
+				</div>				
+				<div class="input-group mb-3">
+  					<div class="input-group-prepend">
+    					<span class="input-group-text" id="basic-addon1">上架日期</span>
+  					</div>
+  						<input type="date" class="form-control" id="commodity_date" name="commodity_date"   aria-describedby="basic-addon1">
+				</div>
+				<div class="input-group mb-3">
+  					<div class="input-group-prepend">
+    					<span class="input-group-text" id="basic-addon1">商品描述</span>
+  					</div>
+  						<textarea class="form-control" id="commodity_dis" name="commodity_dis" aria-label="With textarea"></textarea>
+				</div>
+				<div class="input-group mb-3">
+  					<div class="input-group-prepend">
+    					<span class="input-group-text" id="basic-addon1">圖片連結</span>
+  					</div>
+  						<input type="text" class="form-control" id="commodity_img" name="commodity_img"   aria-describedby="basic-addon1">
+				</div>				
+				<div class="input-group mb-3">
+  					<div class="input-group-prepend">
+    					<span class="input-group-text" id="basic-addon1">商品價格</span>
+  					</div>
+  						<input type="text" class="form-control" id="commodity_price" name="commodity_price"   aria-describedby="basic-addon1">
+  					 <div class="input-group-append">
+    					<span class="input-group-text">元</span>
+  					</div>
+				</div>
+        <button type="button" id="sub_insert" class="btn btn-primary btn-lg" >新增</button>
+<!-- 				<input type="submit" id="sub_insert" class="btn btn-primary btn-lg" value="  新增 "> -->
+				<a href="/commodity" class="btn btn-secondary btn-lg">返回清單</a>	
+		</form>
+	</div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+

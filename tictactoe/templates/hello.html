@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>I come from template!!</title>
+        <style>
+            body {
+               background-color: lightyellow;
+            }
+            em {
+                color: LightSeaGreen;
+            }
+        </style>
+            <script src="https://code.jquery.com/jquery-3.2.1.min.js">
+    </script>
+
+    </head>
+    <body>
+        <h1>Hello World!</h1>
+        {% load static %}
+        <img src="{% static 'img/eyes.jpg' %}">
+        <em>{{ current_time }}</em>
+    </body>
+</html>
